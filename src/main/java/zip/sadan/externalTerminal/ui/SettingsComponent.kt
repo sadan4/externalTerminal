@@ -25,7 +25,7 @@ private fun <T> observableSetting(initialValue: T): ObservableMutableProperty<T>
 
 class SettingsComponent {
     object Model {
-        var _path = observableSetting("")
+        internal val _path = observableSetting("")
         var path by _path
     }
 
