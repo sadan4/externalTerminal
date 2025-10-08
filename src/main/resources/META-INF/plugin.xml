@@ -1,0 +1,42 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>zip.sadan.externalTerminal</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>ExternalTerminal</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://www.sadan.zip">sadan</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        Adds an action to open an external terminal in the current project's directory.<br/>
+        The terminal application can be configured in the settings.<br/>
+    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="zip.sadan.externalTerminal.OpenExternalTerminalAction"
+                class="zip.sadan.externalTerminal.OpenExternalTerminalAction"
+                text="Open External Terminal"
+                description="Open External Terminal"
+        >
+            <keyboard-shortcut first-keystroke="control shift C" keymap="$default" />
+        </action>
+    </actions>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="tools" instance="zip.sadan.externalTerminal.SettingsConfigurable"
+                                 id="zip.sadan.externalTerminal.ui.Settings" displayName="External Terminal"/>
+        <applicationService serviceImplementation="zip.sadan.externalTerminal.SettingsService"/>
+        <notificationGroup displayType="BALLOON" id="zip.sadan.externalTerminal.warnings"/>
+    </extensions>
+</idea-plugin>
